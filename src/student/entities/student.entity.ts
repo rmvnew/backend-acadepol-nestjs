@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, OneToMany } from "typeorm";
 import { Exam } from "src/exam/entities/exam.entity";
+import { StudentExam } from "src/student_exam/entities/student_exam.entity";
 
 @Entity("TB_STUDENT")
 export class Student {
@@ -16,6 +17,6 @@ export class Student {
     @Column()
     student_access_code: string;
 
-    @ManyToMany(() => Exam, exam => exam.students)
-    exams: Exam[];
+    @OneToMany(() => StudentExam, studentExam => studentExam.student)
+    studentExams: StudentExam[];
 }

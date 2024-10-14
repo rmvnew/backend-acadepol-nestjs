@@ -14,6 +14,7 @@ import { StudentModule } from './student/student.module';
 import { ExamModule } from './exam/exam.module';
 import { QuestionModule } from './question/question.module';
 import { OptionModule } from './option/option.module';
+import { StudentExamModule } from './student_exam/student_exam.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { OptionModule } from './option/option.module';
     ExamModule,
     QuestionModule,
     OptionModule,
+    StudentExamModule,
   ],
   controllers: [],
   providers: [

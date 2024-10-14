@@ -127,7 +127,6 @@ export class UserService {
 
       const userQueryBuilder = this.userRepository.createQueryBuilder('user')
         .leftJoinAndSelect('user.profile', 'profile')
-        .leftJoinAndSelect('user.address', 'address')
         .select([
           'user.user_id',
           'user.user_name',
@@ -143,15 +142,7 @@ export class UserService {
         .addSelect([
           'profile.profile_name'
         ])
-        .addSelect([
-          'address.address_id',
-          'address.address_city',
-          'address.address_district',
-          'address.address_home_number',
-          'address.address_state',
-          'address.address_street',
-          'address.address_zipcode',
-        ])
+
 
 
       if (showActives === "true") {
@@ -222,7 +213,6 @@ export class UserService {
 
       const user = await this.userRepository.createQueryBuilder('user')
         .leftJoinAndSelect('user.profile', 'profile')
-        .leftJoinAndSelect('user.address', 'address')
         .leftJoinAndSelect('user.psychologist', 'psychologist')
         .where('user.user_id = :user_id', { user_id: id })
         .getOne()
@@ -245,7 +235,6 @@ export class UserService {
 
       const user = await this.userRepository.createQueryBuilder('user')
         .leftJoinAndSelect('user.profile', 'profile')
-        .leftJoinAndSelect('user.address', 'address')
         .where('user.user_id = :user_id', { user_id: id })
         .getOne()
 
