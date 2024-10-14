@@ -11,6 +11,7 @@ import { ProfileModule } from './profile/profile.module';
 import { UserModule } from './user/user.module';
 import { HistoricModule } from './historic/historic.module';
 import { StudentModule } from './student/student.module';
+import { ExamModule } from './exam/exam.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { StudentModule } from './student/student.module';
     EmailModule,
     HistoricModule,
     StudentModule,
+    ExamModule,
   ],
   controllers: [],
   providers: [

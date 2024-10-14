@@ -1,3 +1,4 @@
+import { Exam } from 'src/exam/entities/exam.entity';
 import { Historic } from 'src/historic/entities/historic.entity';
 import { ProfileEntity } from "src/profile/entities/profile.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -48,5 +49,6 @@ export class UserEntity {
     @OneToMany(() => Historic, historic => historic.user)
     historics: Historic[];
 
-
+    @OneToMany(() => Exam, exam => exam.instructor)
+    exams: Exam[];
 }
