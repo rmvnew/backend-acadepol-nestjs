@@ -12,6 +12,8 @@ import { UserModule } from './user/user.module';
 import { HistoricModule } from './historic/historic.module';
 import { StudentModule } from './student/student.module';
 import { ExamModule } from './exam/exam.module';
+import { QuestionModule } from './question/question.module';
+import { OptionModule } from './option/option.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { ExamModule } from './exam/exam.module';
     HistoricModule,
     StudentModule,
     ExamModule,
+    QuestionModule,
+    OptionModule,
   ],
   controllers: [],
   providers: [

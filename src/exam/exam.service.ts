@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { CreateExamDto } from './dto/create-exam.dto';
-import { UpdateExamDto } from './dto/update-exam.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Exam } from './entities/exam.entity';
 
 @Injectable()
 export class ExamService {
-  create(createExamDto: CreateExamDto) {
-    return 'This action adds a new exam';
+  constructor(
+    @InjectRepository(Exam)
+    private examRepository: Repository<Exam>,
+  ) { }
+
+  async create(examData: Partial<Exam>): Promise<Exam> {
+    const exam = this.examRepository.create(examData);
+    return await this.examRepository.save(exam);
   }
 
-  findAll() {
-    return `This action returns all exam`;
+  async findAll(): Promise<Exam[]> {
+    return await this.examRepository.find({ relations: ['students', 'instructor', 'questions'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} exam`;
+  async findOne(id: string): Promise<Exam> {
+    return await this.examRepository.findOne({
+      where: { exam_id: id },
+      relations: ['students', 'instructor', 'questions'],
+    });
   }
 
-  update(id: number, updateExamDto: UpdateExamDto) {
-    return `This action updates a #${id} exam`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} exam`;
+  async update(id: string, examData: Partial<Exam>): Promise<Exam> {
+    await this.examRepository.update(id, examData);
+    return this.findOne(id);
   }
 }
